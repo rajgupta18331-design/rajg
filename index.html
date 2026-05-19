@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCast | Premium Weather Intelligence</title>
+    <meta name="description" content="Experience weather forecasting like never before. SkyCast provides ultra-high-fidelity weather data with premium analytics and real-time visualization.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-overlay" id="bg-overlay"></div>
+    
+    <main class="container">
+        <header>
+            <div class="logo">
+                <i data-lucide="cloud-sun" class="logo-icon"></i>
+                <h1>SkyCast</h1>
+            </div>
+            <div class="search-container">
+                <input type="text" id="city-input" placeholder="Search city..." autocomplete="off">
+                <button id="location-btn" class="secondary-btn" aria-label="Use current location">
+                    <i data-lucide="navigation"></i>
+                </button>
+                <button id="search-btn" aria-label="Search">
+                    <i data-lucide="search"></i>
+                </button>
+            </div>
+        </header>
+
+        <section class="weather-card glass" id="weather-card">
+            <div class="loading-spinner" id="loader">
+                <div class="spinner"></div>
+            </div>
+            
+            <div class="weather-content hidden" id="weather-content">
+                <div class="main-info">
+                    <div class="location">
+                        <i data-lucide="map-pin"></i>
+                        <h2 id="city-name">London</h2>
+                    </div>
+                    <p id="current-date">Monday, 11 May</p>
+                    <div class="temp-display">
+                        <span id="temperature">24</span><span class="unit">°C</span>
+                    </div>
+                    <div class="weather-desc">
+                        <i id="weather-icon-large"></i>
+                        <span id="description">Partly Cloudy</span>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <i data-lucide="thermometer"></i>
+                        <div class="stat-info">
+                            <span class="label">Feels Like</span>
+                            <span class="value" id="feels-like">26°C</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="droplets"></i>
+                        <div class="stat-info">
+                            <span class="label">Humidity</span>
+                            <span class="value" id="humidity">45%</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="wind"></i>
+                        <div class="stat-info">
+                            <span class="label">Wind Speed</span>
+                            <span class="value" id="wind-speed">12 km/h</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="gauge"></i>
+                        <div class="stat-info">
+                            <span class="label">Pressure</span>
+                            <span class="value" id="pressure">1012 hPa</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="eye"></i>
+                        <div class="stat-info">
+                            <span class="label">Visibility</span>
+                            <span class="value" id="visibility">10 km</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="cloud"></i>
+                        <div class="stat-info">
+                            <span class="label">Clouds</span>
+                            <span class="value" id="clouds">20%</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="sunrise"></i>
+                        <div class="stat-info">
+                            <span class="label">Sunrise</span>
+                            <span class="value" id="sunrise">06:12 AM</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="sunset"></i>
+                        <div class="stat-info">
+                            <span class="label">Sunset</span>
+                            <span class="value" id="sunset">07:45 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="forecast-section">
+                    <h3>5-Day Forecast</h3>
+                    <div class="forecast-grid" id="forecast-container">
+                        <!-- Forecast items will be injected here -->
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <canvas id="tempChart"></canvas>
+                </div>
+            </div>
+
+            <div class="error-msg hidden" id="error-msg">
+                <i data-lucide="alert-circle"></i>
+                <p>City not found. Please try again.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
